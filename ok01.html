@@ -69,7 +69,7 @@ Makefile</pre>
 					section to put the code in, from this point until the next <span class="armCodeInline">
 						.section</span> or the end of the file.</p>
 				<div class="informationBox"><p>
-					In assembly code, you may skip lines, and put spaces before and after commands to
+					In assembly code, you may skip lines and put spaces before and after commands to
 					aid readability.</p></div>
 				<p>
 					The next two lines are there to stop a warning message and aren't all that important.<a
@@ -78,7 +78,7 @@ Makefile</pre>
 					3 The First Line</h2>
 				<p>
 					Now we're actually going to code something. In assembly code, the computer simply
-					goes through the code, doing each instruction in order, unless told otherwise. Each
+					goes through the code, doing each instruction in order unless told otherwise. Each
 					instruction starts on a new line.</p>
 				<p>
 					Copy the following instruction.</p>
@@ -106,7 +106,7 @@ Makefile</pre>
 					I've used r0 in this example, but I could very well have used any of the others.
 					As long as you're consistent, it doesn't matter.</p>
 				<p>
-					0x20200000 is indeed a number. However it is written in Hexadecimal notation. To
+					0x20200000 is indeed a number. However it is written in hexadecimal notation. To
 					learn more about hexadecimal expand the box below:</p>
 				<div class="expandableHeader" onclick="return ExpandToggle('hex')">
 					<p>
@@ -122,7 +122,7 @@ Makefile</pre>
 						class="sideDiagram" />
 					<p>
 						You may recall being taught how decimal numbers work in terms of place value. We
-						say that the rightmost digits is the 'units' digits, the next one left is the 'tens'
+						say that the rightmost digit is the 'units' digit, the next one left is the 'tens'
 						digit, the next is the 'hundreds' digit, and so on. What this actually meant is,
 						the number is 100 &times; the value in the 'hundreds' digit, plus 10 &times; the
 						value in the 'tens' digit, plus 1 &times; the value in the units digit.</p>
@@ -130,7 +130,7 @@ Makefile</pre>
 					<p>
 						More mathematically, we can now spot the pattern and say that the rightmost digit
 						is the 10<sup>0</sup>=1s digit, the next left is the 10<sup>1</sup>=10s digit, the
-						next is 10<sup>2</sup>=100s digit, and so on. We have all agreed on the system that
+						next is 10<sup>2</sup>=100s digit and so on. We have all agreed on the system that
 						0 is the lowest digit, 1 is the next and so on. But what if we used a different
 						number instead of 10 in these powers? Hexadecimal is just the system in which we
 						use 16 instead.</p>
@@ -157,7 +157,7 @@ Makefile</pre>
 						very useful because every hexadecimal digit is exactly four binary digits long.
 						This has the nice side effect that a lot of computer numbers are round numbers in
 						hexadecimal, even though they're not in decimal. For example, in the assembly code
-						just above I used the number 20200000<sub>16</sub>. If I had chose to write this
+						just above I used the number 20200000<sub>16</sub>. If I had chosen to write this
 						in decimal it would have been 538968064<sub>10</sub>, which is much less memorable.
 					</p>
 					<p>
@@ -186,10 +186,10 @@ Makefile</pre>
 					address. Much like a postal address or a web address this is just a means of identifying
 					the location of the device or chunks of memory we want. Addresses in computers are
 					just numbers, and so the number 20200000<sub>16</sub> happens to be the address
-					of the GPIO controller. This is just a design decision taken by the manufacturers,
+					of the GPIO controller. This is just a design decision taken by the manufacturer;
 					they could have used any other address (providing it didn't conflict with anything
 					else). I know this address only because I looked it up in a manual<a class="noteLink"
-						name="note3a" href="#note3" title="Note 3"><sup>[3]</sup></a>, there is no particular
+						name="note3a" href="#note3" title="Note 3"><sup>[3]</sup></a> &ndash; there is no particular
 					system to the addresses (other than that they are all large round numbers in hexadecimal).</p>
 				<h2 id="enablingoutput">
 					4 Enabling Output</h2>
@@ -198,7 +198,7 @@ Makefile</pre>
 				<p>
 					Having read the manual, I know we're going to need to send two messages to the GPIO
 					controller. We need to talk its language, but if we do, it will obligingly do what
-					we want and turn on the OK LED. Fortunately, it is such a simple chip, that it only
+					we want and turn on the OK LED. Fortunately, it is such a simple chip that it only
 					needs a few numbers in order to understand what to do.</p>
 				<div class="armCodeBlock"><p>
 					mov r1,#1<br />
@@ -256,9 +256,9 @@ Makefile</pre>
 						Just like hexadecimal binary is another way of writing numbers. In binary we only
 						have 2 digits, 0 and 1. This is useful for computers because we can implement this
 						in a circuit by saying that electricity flowing through the circuit means 1, and
-						not means 0. This is how computers actually work and do maths. Despite only having
-						2 digits binary can still be used to represent every number, it just takes a lot
-						longer.</p>
+						electricity not flowing means 0. This is how computers actually work and do maths. 
+						Despite only having 2 digits binary can still be used to represent every number, 
+						it just takes a lot longer.</p>
 					<img src="images/binary1.png" alt="567 in decimal = 1000110111 in binary" class="sideDiagram" />
 					<p>
 						The image shows the binary representation of the number 567<sub>10</sub> which is
@@ -266,7 +266,7 @@ Makefile</pre>
 					<p>
 						One of the quirks of binary that we make heavy use of in assembly code is the ease
 						by which numbers can be multiplied or divided by powers of 2 (e.g. 1,2,4,8,16).
-						Normally multiplications and divisions are tricky operations, however these special
+						Normally multiplications and divisions are tricky operations, but these special
 						cases are very easy, and so are very important.</p>
 					<img src="images/binary2.png" alt="13*4 = 52, 1101*100=110100" class="sideDiagram" />
 					<p>
@@ -290,7 +290,7 @@ Makefile</pre>
 						the size of a word, 2 bytes in this case. A word refers to the size of the registers
 						on a processor, and so on the Raspberry Pi this is 4 bytes. The convention is to
 						number the most significant bit of a word 31, and the least significant bit as 0.
-						The top, or high bits refer to the most significant bits, and the low or bottom
+						The top, or high, bits refer to the most significant bits, and the low, or bottom,
 						bits refer to the least significant. A kilobyte (KB) is 1000 bytes, a megabyte is
 						1000 KB. There is some confusion as to whether this should be 1000 or 1024 (a round
 						number in binary). As such, the new international standard is that a KB is 1000
@@ -303,7 +303,7 @@ Makefile</pre>
 				<p>
 					Once again, I only know that we need this value from reading the manual<a class="noteLink"
 						name="note3b" href="#note3" title="Note 3"><sup>[3]</sup></a>. The manual says
-					that there is a set of 24 bytes in the GPIO controller, which determine the settings
+					that there is a set of 24 bytes in the GPIO controller that determine the settings
 					of the GPIO pin. The first 4 relate to the first 10 GPIO pins, the second 4 relate
 					to the next 10 and so on. There are 54 GPIO pins, so we need 6 sets of 4 bytes,
 					which is 24 bytes in total. Within each 4 byte section, every 3 bits relates to
@@ -412,7 +412,7 @@ Makefile</pre>
 				<hr />
 				<ol>
 					<li><a name="note1" /><sup>[1]<a class="noteBackLink" href="#note1a">^</a></sup> OK,
-						I'm lying it tells the linker, which is another program used to link several assembled
+						I'm lying. It tells the linker, which is another program used to link several assembled
 						files together. It doesn't really matter.</li>
 					<li><a name="note2" /><sup>[2]<a class="noteBackLink" href="#note2a">^</a></sup> Clearly
 						they're important to you. Since the GNU toolchain is mainly used for creating programs,
